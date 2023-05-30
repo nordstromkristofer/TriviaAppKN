@@ -1,0 +1,21 @@
+.quizcard {
+  margin: 0% auto;
+  width: 20%;
+  margin-top: 5%;
+  background-color: #f5f5dc8f;
+}
+
+select {
+  height: 2rem;
+  border-radius: 5px;
+}
+
+.submitbutton {
+  margin-left: 40%;
+  padding: 2%;
+}
+
+
+.cardtitle {
+  display: none;
+}
