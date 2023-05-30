@@ -1,0 +1,14 @@
+<mat-card>
+  <mat-card-title>My Form</mat-card-title>
+  <mat-card-content>
+    <form>
+      <!-- Form fields go here -->
+      <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" [(ngModel)]="formData.name">
+      </div>
+      <!-- More form fields -->
+      <button type="submit">Submit</button>
+    </form>
+  </mat-card-content>
+</mat-card>
