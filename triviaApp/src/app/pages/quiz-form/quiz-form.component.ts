@@ -12,6 +12,8 @@ export class QuizFormComponent implements OnInit {
   onSubmit() {
   }
 
+
+
   constructor() { }
 
   ngOnInit(): void {
