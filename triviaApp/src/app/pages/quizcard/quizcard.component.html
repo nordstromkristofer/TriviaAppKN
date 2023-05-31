@@ -1,11 +1,10 @@
 <div class="quiz-container">
-  <h1>{{ currentQuestion?.question }}</h1>
+  <h1 class="question">{{ currentQuestion?.question }}</h1>
 
-  <h2>Possible Answers:</h2>
-  <ul>
-    <li>{{ currentQuestion?.correct_answer }}</li>
-    <li *ngFor="let incorrectAnswer of currentQuestion?.incorrect_answers">
+  <div class="answers">
+    <div>{{ currentQuestion?.correct_answer }}</div>
+    <div *ngFor="let incorrectAnswer of currentQuestion?.incorrect_answers">
       {{ incorrectAnswer }}
-    </li>
-  </ul>
+    </div>
+  </div>
 </div>
