@@ -1,15 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { QuizQuestion } from '../../services/quiz-interfaces';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-quizard',
-  templateUrl: './quizard.component.html',
-  styleUrls: ['./quizard.component.css']
+  selector: 'app-quiz-card',
+  templateUrl: './quizcard.component.html',
+  styleUrls: ['./quizcard.component.css']
 })
-export class QuizardComponent implements OnInit {
+export class QuizCardComponent implements OnInit {
+  quizQuestions: QuizQuestion[] = [];
+  currentIndex: number = 0;
+  currentQuestion: QuizQuestion | undefined;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-  }
+    this.route.paramMap.subscribe(params => {
+      const state = window.history.state;
+      this.quizQuestions = state?.quizQuestions || [];
+      this.currentIndex = state?.currentIndex || 0;
+      this.currentQuestion = this.quizQuestions[this.currentIndex];
 
+      console.log('Quiz Questions:', this.quizQuestions);
+      console.log('Current Index:', this.currentIndex);
+      console.log('Current Question:', this.currentQuestion);
+    });
+  }
 }

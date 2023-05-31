@@ -10,12 +10,14 @@ import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { HomeComponent } from './pages/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
+import { QuizCardComponent } from './pages/quizcard/quizcard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     QuizFormComponent,
-    HomeComponent
+    HomeComponent,
+    QuizCardComponent
   ],
   imports: [
     FormsModule,

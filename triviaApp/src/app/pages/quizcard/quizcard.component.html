@@ -1,1 +1,11 @@
-<p>quizard works!</p>
+<div class="quiz-container">
+  <h1>{{ currentQuestion?.question }}</h1>
+
+  <h2>Possible Answers:</h2>
+  <ul>
+    <li>{{ currentQuestion?.correct_answer }}</li>
+    <li *ngFor="let incorrectAnswer of currentQuestion?.incorrect_answers">
+      {{ incorrectAnswer }}
+    </li>
+  </ul>
+</div>
