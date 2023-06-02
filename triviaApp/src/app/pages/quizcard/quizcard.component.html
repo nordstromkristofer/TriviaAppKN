@@ -1,10 +1,13 @@
 <div class="quiz-container">
   <h1 class="question">{{ currentQuestion?.question }}</h1>
 
-  <div class="answers">
-    <div>{{ currentQuestion?.correct_answer }}</div>
-    <div *ngFor="let incorrectAnswer of currentQuestion?.incorrect_answers">
+  <ul class="answers">
+    <li class="answer" (click)="selectAnswer(currentQuestion?.correct_answer)">
+      {{ currentQuestion?.correct_answer }}
+    </li>
+    <li *ngFor="let incorrectAnswer of currentQuestion?.incorrect_answers" class="answer"
+      (click)="selectAnswer(incorrectAnswer)">
       {{ incorrectAnswer }}
-    </div>
-  </div>
+    </li>
+  </ul>
 </div>

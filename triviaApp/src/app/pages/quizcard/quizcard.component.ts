@@ -19,6 +19,10 @@ export class QuizCardComponent implements OnInit {
       const state = window.history.state;
       this.quizQuestions = state?.quizQuestions || [];
       this.currentIndex = state?.currentIndex || 0;
+
+      // Randomizing the questions.
+      this.quizQuestions = this.shuffle(this.quizQuestions);
+
       this.currentQuestion = this.quizQuestions[this.currentIndex];
 
       console.log('Quiz Questions:', this.quizQuestions);
@@ -26,4 +30,32 @@ export class QuizCardComponent implements OnInit {
       console.log('Current Question:', this.currentQuestion);
     });
   }
+
+  shuffle(array: any[]): any[] {
+    let currentIndex = array.length;
+    let temporaryValue;
+    let randomIndex;
+
+
+    while (0 !== currentIndex) {
+
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+  }
+
+  selectAnswer(answer: string | undefined): void {
+    if (answer) {
+      // Handle the selected answer logic here
+      console.log('Selected answer:', answer);
+      // You can perform further actions based on the selected answer, such as checking if it is correct or updating the UI accordingly.
+    }
+  }
+
 }

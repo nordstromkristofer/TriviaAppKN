@@ -15,8 +15,26 @@
   align-items: center;
 }
 
+.answer {
+  border: 2px solid black;
+  height: 10rem;
+  display: flex;
+  align-content: center;
+  flex-wrap: wrap;
+  font-size: 20px;
+  font-weight: 100;
+  width: 25%;
+  justify-content: center;
+  margin-right: 3%;
+}
+
 .question {
   margin: 0% auto;
   border: 2px solid orange;
   text-align: center;
+}
+
+ul,
+li {
+  list-style-type: none;
 }

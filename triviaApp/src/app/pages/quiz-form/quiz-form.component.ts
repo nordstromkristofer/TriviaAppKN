@@ -25,6 +25,12 @@ export class QuizFormComponent implements OnInit {
       });
   }
 
+  selectAnswer(answer: string): void {
+    // Handle the selected answer logic here
+    console.log('Selected answer:', answer);
+    // You can perform further actions based on the selected answer, such as checking if it is correct or updating the UI accordingly.
+  }
+
 
 
   onSubmit() {
