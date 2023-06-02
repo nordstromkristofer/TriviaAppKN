@@ -11,8 +11,10 @@ export class QuizCardComponent implements OnInit {
   quizQuestions: QuizQuestion[] = [];
   currentIndex: number = 0;
   currentQuestion: QuizQuestion | undefined;
+  selectedAnswer: string | undefined;
 
   constructor(private route: ActivatedRoute) { }
+
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -36,9 +38,7 @@ export class QuizCardComponent implements OnInit {
     let temporaryValue;
     let randomIndex;
 
-
     while (0 !== currentIndex) {
-
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex -= 1;
 
@@ -52,10 +52,18 @@ export class QuizCardComponent implements OnInit {
 
   selectAnswer(answer: string | undefined): void {
     if (answer) {
-      // Handle the selected answer logic here
+      this.selectedAnswer = answer;
       console.log('Selected answer:', answer);
       // You can perform further actions based on the selected answer, such as checking if it is correct or updating the UI accordingly.
     }
   }
 
+  toggleAnswer(answer: string | undefined): void {
+    if (this.selectedAnswer === answer) {
+      this.selectedAnswer = undefined;
+    } else {
+      this.selectedAnswer = answer;
+    }
+  }
 }
+

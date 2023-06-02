@@ -2,7 +2,7 @@
   border: 2px solid red;
   margin: 0 auto;
   width: 90%;
-  height: 50%;
+  height: 70%;
 }
 
 .answers {
@@ -17,6 +17,7 @@
 
 .answer {
   border: 2px solid black;
+  border-radius: 15px;
   height: 10rem;
   display: flex;
   align-content: center;
@@ -26,15 +27,35 @@
   width: 25%;
   justify-content: center;
   margin-right: 3%;
+  background-color: #8fde2278
+}
+
+.answer.active {
+  background-color: #bd492d94;
 }
 
 .question {
   margin: 0% auto;
   border: 2px solid orange;
   text-align: center;
+  margin-bottom: 3%;
 }
 
 ul,
 li {
   list-style-type: none;
+}
+
+.submitbutton {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-top: 2%;
+}
+
+button {
+  background-color: #d2d2d27a;
+  width: 18rem;
+  height: 3rem;
+  border-radius: 9px;
 }
