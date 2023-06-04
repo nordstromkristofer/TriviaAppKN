@@ -5,9 +5,9 @@ import { HomeComponent } from './pages/home/home.component';
 import { QuizCardComponent } from './pages/quizcard/quizcard.component';
 
 const routes: Routes = [
-  { path: 'qform', component: QuizFormComponent },
+  // { path: 'qform', component: QuizFormComponent },
   { path: 'quiz', component: QuizCardComponent },
-  { path: '', component: HomeComponent }
+  { path: '', component: QuizFormComponent }
 ];
 
 @NgModule({

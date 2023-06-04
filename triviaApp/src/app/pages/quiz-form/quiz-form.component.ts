@@ -13,7 +13,7 @@ export class QuizFormComponent implements OnInit {
   selectedCategoryId: number = 9;
   formData: any = {};
   quizquestions: QuizQuestion[] = [];
-  selectedDifficulty: string = ''; // Initialize with an empty string
+  selectedDifficulty: string = '';
 
   constructor(private quizService: QuizService, private router: Router) { }
 
@@ -25,11 +25,7 @@ export class QuizFormComponent implements OnInit {
       });
   }
 
-  selectAnswer(answer: string): void {
-    // Handle the selected answer logic here
-    console.log('Selected answer:', answer);
-    // You can perform further actions based on the selected answer, such as checking if it is correct or updating the UI accordingly.
-  }
+
 
 
 

@@ -22,8 +22,6 @@ export class QuizCardComponent implements OnInit {
       this.quizQuestions = state?.quizQuestions || [];
       this.currentIndex = state?.currentIndex || 0;
 
-      // Randomizing the questions.
-      this.quizQuestions = this.shuffle(this.quizQuestions);
 
       this.currentQuestion = this.quizQuestions[this.currentIndex];
 
@@ -33,28 +31,13 @@ export class QuizCardComponent implements OnInit {
     });
   }
 
-  shuffle(array: any[]): any[] {
-    let currentIndex = array.length;
-    let temporaryValue;
-    let randomIndex;
 
-    while (0 !== currentIndex) {
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
-
-      temporaryValue = array[currentIndex];
-      array[currentIndex] = array[randomIndex];
-      array[randomIndex] = temporaryValue;
-    }
-
-    return array;
-  }
 
   selectAnswer(answer: string | undefined): void {
     if (answer) {
       this.selectedAnswer = answer;
       console.log('Selected answer:', answer);
-      // You can perform further actions based on the selected answer, such as checking if it is correct or updating the UI accordingly.
+      //
     }
   }
 
@@ -63,6 +46,16 @@ export class QuizCardComponent implements OnInit {
       this.selectedAnswer = undefined;
     } else {
       this.selectedAnswer = answer;
+    }
+  }
+
+  nextQuestion(): void {
+    if (this.currentIndex < this.quizQuestions.length - 1) {
+      this.currentIndex++;
+      this.currentQuestion = this.quizQuestions[this.currentIndex];
+      this.selectedAnswer = undefined;
+    } else {
+      // end function
     }
   }
 }

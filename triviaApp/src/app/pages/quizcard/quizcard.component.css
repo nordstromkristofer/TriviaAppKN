@@ -22,8 +22,8 @@
   display: flex;
   align-content: center;
   flex-wrap: wrap;
-  font-size: 20px;
-  font-weight: 100;
+  font-size: 15px;
+  font-weight: 200;
   width: 25%;
   justify-content: center;
   margin-right: 3%;
@@ -35,6 +35,7 @@
 }
 
 .question {
+  padding-top: 3%;
   margin: 0% auto;
   border: 2px solid orange;
   text-align: center;

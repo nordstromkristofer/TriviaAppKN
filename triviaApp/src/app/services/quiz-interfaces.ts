@@ -15,5 +15,5 @@ export interface QuizQuestion {
   question: string;
   correct_answer: string;
   incorrect_answers: string[];
-  answers: string[];
+  shuffledIncorrectAnswers?: string[]; // Add this optional property
 }
