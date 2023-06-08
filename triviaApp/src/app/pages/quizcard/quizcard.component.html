@@ -1,16 +1,16 @@
 <div class="quiz-container">
   <h1 class="question" [innerHTML]="currentQuestion?.question"></h1>
 
-  <ul class="answers">
-    <li [class.active]="selectedAnswer === currentQuestion?.correct_answer"
-      (click)="toggleAnswer(currentQuestion?.correct_answer)" class="answer">
-      {{ currentQuestion?.correct_answer }}
-    </li>
-    <li *ngFor="let answer of currentQuestion?.incorrect_answers" [class.active]="selectedAnswer === answer"
-      (click)="toggleAnswer(answer)" class="answer">
-      {{ answer }}
-    </li>
-  </ul>
+  <div>
+    <ul class="answers">
+      <li *ngFor="let answer of shuffledAnswers" [class.active]="selectedAnswer === answer"
+        (click)="toggleAnswer(answer)" class="answer">
+        {{ answer }}
+      </li>
+    </ul>
+  </div>
+
+
 
   <div class="submitbutton">
     <button style="background-color: #d2d2d27a" type="submit" (click)="nextQuestion()">Next</button>
