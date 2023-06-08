@@ -3,13 +3,13 @@
   <mat-card-content style="padding: 2%;">
     <form (ngSubmit)="onSubmit()">
       <div>
-        <label>Select category:</label>
+        <label>Category</label>
         <select [(ngModel)]="selectedCategoryId" name="selectedCategory">
           <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
         </select>
       </div>
       <div>
-        <label>Select difficulty:</label>
+        <label>Difficulty</label>
         <select [(ngModel)]="selectedDifficulty" name="selectedDifficulty">
           <option value="">Any difficulty</option>
           <option value="easy">Easy</option>

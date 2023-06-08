@@ -16,6 +16,9 @@ export class QuizCardComponent implements OnInit {
   shuffledAnswers: string[] = [];
   selectedAnswer: string | undefined;
   userAnswers: (string | undefined)[] = [];
+  remainingTime: number = 31; // Initial time value
+
+  private timer: any; // Reference to the timer interval
 
   constructor(
     private route: ActivatedRoute,
@@ -37,7 +40,30 @@ export class QuizCardComponent implements OnInit {
       console.log('Current Index:', this.currentIndex);
       console.log('Current Question:', this.currentQuestion);
       console.log('Shuffled Answers:', this.shuffledAnswers);
+
+      // Start the countdown timer
+      this.startTimer();
     });
+  }
+
+  ngOnDestroy(): void {
+    // Cleanup the timer when the component is destroyed
+    this.stopTimer();
+  }
+
+  startTimer(): void {
+    this.timer = setInterval(() => {
+      this.remainingTime--;
+      if (this.remainingTime === 0) {
+        // Time has run out, automatically select an incorrect answer and proceed to the next question
+        this.selectedAnswer = this.shuffledAnswers.find(answer => answer !== this.currentQuestion?.correct_answer);
+        this.nextQuestion();
+      }
+    }, 1000);
+  }
+
+  stopTimer(): void {
+    clearInterval(this.timer);
   }
 
   shuffleAnswers(): void {
@@ -74,6 +100,9 @@ export class QuizCardComponent implements OnInit {
   }
 
   nextQuestion(): void {
+    // Stop the timer before proceeding to the next question
+    this.stopTimer();
+
     if (this.currentIndex < this.quizQuestions.length - 1) {
       // Store user answer
       this.userAnswers[this.currentIndex] = this.selectedAnswer;
@@ -82,6 +111,9 @@ export class QuizCardComponent implements OnInit {
       this.currentQuestion = this.quizQuestions[this.currentIndex];
       this.shuffleAnswers(); // Shuffle answers for the next question
       this.selectedAnswer = undefined;
+      this.remainingTime = 31; // Reset the remaining time for the next question
+      // Start the countdown timer for the next question
+      this.startTimer();
     } else {
       // End of quiz
       console.log('End of quiz');
@@ -102,5 +134,4 @@ export class QuizCardComponent implements OnInit {
       });
     }
   }
-
 }
