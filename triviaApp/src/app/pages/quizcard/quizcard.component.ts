@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SessionService } from 'src/app/services/session-service';
 import { HttpClient } from '@angular/common/http';
 
-
 @Component({
   selector: 'app-quiz-card',
   templateUrl: './quizcard.component.html',
@@ -16,6 +15,8 @@ export class QuizCardComponent implements OnInit {
   currentQuestion: QuizQuestion | undefined;
   selectedAnswer: string | undefined;
   userAnswers: (string | undefined)[] = [];
+  correctAnswersCount: number = 0;
+  incorrectAnswersCount: number = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -58,6 +59,7 @@ export class QuizCardComponent implements OnInit {
     if (this.currentIndex < this.quizQuestions.length - 1) {
       // Store user answer
       this.userAnswers[this.currentIndex] = this.selectedAnswer;
+      console.log('User Answers:', this.userAnswers); // Log user answers
       // Go to the next question
       this.currentIndex++;
       this.currentQuestion = this.quizQuestions[this.currentIndex];
@@ -67,8 +69,33 @@ export class QuizCardComponent implements OnInit {
       console.log('End of quiz');
       // Store user answer for the last question
       this.userAnswers[this.currentIndex] = this.selectedAnswer;
+      console.log('User Answers:', this.userAnswers); // Log user answers
+      // Count the results
+      this.countResults();
       // Navigate to the result page
-      this.router.navigate(['/result'], { state: { userAnswers: this.userAnswers } });
+      this.router.navigate(['/result'], {
+        state: {
+          userAnswers: this.userAnswers,
+          correctAnswersCount: this.correctAnswersCount,
+          incorrectAnswersCount: this.incorrectAnswersCount
+        }
+      });
     }
+  }
+
+  countResults(): void {
+    this.correctAnswersCount = 0;
+    this.incorrectAnswersCount = 0;
+    for (let i = 0; i < this.quizQuestions.length; i++) {
+      const question = this.quizQuestions[i];
+      const userAnswer = this.userAnswers[i];
+      if (userAnswer === question.correct_answer) {
+        this.correctAnswersCount++;
+      } else {
+        this.incorrectAnswersCount++;
+      }
+    }
+    console.log('Correct Answers:', this.correctAnswersCount);
+    console.log('Incorrect Answers:', this.incorrectAnswersCount);
   }
 }

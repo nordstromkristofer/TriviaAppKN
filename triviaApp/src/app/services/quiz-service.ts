@@ -14,7 +14,7 @@ export class QuizService {
   constructor(private http: HttpClient) { }
 
   getCategories(): Observable<Category[]> {
-    return this.http.get<any>('https://opentdb.com/api_category.php')
+    return this.http.get<any>(this.categoryUrl)
       .pipe(
         map(response => response.trivia_categories)
       );
