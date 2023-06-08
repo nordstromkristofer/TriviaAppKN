@@ -77,24 +77,30 @@ export class QuizCardComponent implements OnInit {
     if (this.currentIndex < this.quizQuestions.length - 1) {
       // Store user answer
       this.userAnswers[this.currentIndex] = this.selectedAnswer;
-      console.log('User Answers:', this.userAnswers);
       // Go to the next question
       this.currentIndex++;
       this.currentQuestion = this.quizQuestions[this.currentIndex];
-      this.shuffleAnswers();
+      this.shuffleAnswers(); // Shuffle answers for the next question
       this.selectedAnswer = undefined;
     } else {
       // End of quiz
       console.log('End of quiz');
       // Store user answer for the last question
       this.userAnswers[this.currentIndex] = this.selectedAnswer;
-      console.log('User Answers:', this.userAnswers);
+      // Count correct and incorrect answers
+      const correctAnswersCount = this.userAnswers.filter(
+        (answer, index) => answer === this.quizQuestions[index].correct_answer
+      ).length;
+      const incorrectAnswersCount = this.userAnswers.length - correctAnswersCount;
       // Navigate to the result page
       this.router.navigate(['/result'], {
         state: {
           userAnswers: this.userAnswers,
-        },
+          correctAnswersCount: correctAnswersCount,
+          incorrectAnswersCount: incorrectAnswersCount
+        }
       });
     }
   }
+
 }
