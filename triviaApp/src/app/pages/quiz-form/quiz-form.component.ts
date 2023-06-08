@@ -30,18 +30,16 @@ export class QuizFormComponent implements OnInit {
 
 
   onSubmit() {
-    const categoryId = this.selectedCategoryId; // Get the selected category ID from the dropdown
-    const difficulty = this.selectedDifficulty; // Get the selected difficulty from the dropdown
+    const categoryId = this.selectedCategoryId;
+    const difficulty = this.selectedDifficulty;
 
     this.quizService.getQuiz(categoryId, difficulty)
       .subscribe(quizQuestions => {
         console.log('Quiz Questions:', quizQuestions);
 
-        // Assuming quizQuestions is an array of QuizQuestion objects
 
-        // Redirect to the quiz page with the first question
         this.router.navigate(['/quiz'], {
-          state: { quizQuestions, currentIndex: 0 } // Pass quizQuestions array and initial question index
+          state: { quizQuestions, currentIndex: 0 }
         });
       });
   }
