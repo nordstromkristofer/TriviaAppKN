@@ -16,6 +16,7 @@ export class QuizCardComponent implements OnInit {
   shuffledAnswers: string[] = [];
   selectedAnswer: string | undefined;
   userAnswers: (string | undefined)[] = [];
+  timer: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -37,6 +38,8 @@ export class QuizCardComponent implements OnInit {
       console.log('Current Index:', this.currentIndex);
       console.log('Current Question:', this.currentQuestion);
       console.log('Shuffled Answers:', this.shuffledAnswers);
+
+      this.startTimer(); // Start the timer when the component initializes
     });
   }
 
@@ -73,26 +76,53 @@ export class QuizCardComponent implements OnInit {
     }
   }
 
+  startTimer(): void {
+    const totalTime = 31; // Total time in seconds
+    let remainingTime = totalTime;
+
+    console.log('Timer started');
+
+    const timerInterval = setInterval(() => {
+      remainingTime--;
+
+      if (remainingTime > 0) {
+        console.log(`Remaining time: ${remainingTime} seconds`);
+      } else {
+        console.log('Time ran out');
+        this.handleIncorrectAnswer();
+        clearInterval(timerInterval);
+      }
+    }, 1000);
+  }
+
+  handleIncorrectAnswer(): void {
+    // Moving to next if too slow
+    this.nextQuestion();
+  }
+
   nextQuestion(): void {
+    clearTimeout(this.timer); // Clear timer
+
     if (this.currentIndex < this.quizQuestions.length - 1) {
       // Store user answer
       this.userAnswers[this.currentIndex] = this.selectedAnswer;
       // Go to the next question
       this.currentIndex++;
       this.currentQuestion = this.quizQuestions[this.currentIndex];
-      this.shuffleAnswers(); // Shuffle answers for the next question
+      this.shuffleAnswers();
       this.selectedAnswer = undefined;
+
+      this.startTimer();
     } else {
       // End of quiz
       console.log('End of quiz');
-      // Store user answer for the last question
       this.userAnswers[this.currentIndex] = this.selectedAnswer;
-      // Count correct and incorrect answers
+      //answer count
+
       const correctAnswersCount = this.userAnswers.filter(
         (answer, index) => answer === this.quizQuestions[index].correct_answer
       ).length;
       const incorrectAnswersCount = this.userAnswers.length - correctAnswersCount;
-      // Navigate to the result page
       this.router.navigate(['/result'], {
         state: {
           userAnswers: this.userAnswers,
@@ -102,5 +132,4 @@ export class QuizCardComponent implements OnInit {
       });
     }
   }
-
 }
