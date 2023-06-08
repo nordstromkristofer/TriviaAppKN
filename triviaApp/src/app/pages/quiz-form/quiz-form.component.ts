@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Category, QuizQuestion, QuizResponse } from '../../services/quiz-interfaces';
 import { QuizService } from '../../services/quiz-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-quiz-form',
@@ -12,9 +13,9 @@ export class QuizFormComponent implements OnInit {
   selectedCategoryId: number = 9;
   formData: any = {};
   quizquestions: QuizQuestion[] = [];
-  selectedDifficulty: string = ''; // Initialize with an empty string
+  selectedDifficulty: string = '';
 
-  constructor(private quizService: QuizService) { }
+  constructor(private quizService: QuizService, private router: Router) { }
 
   ngOnInit(): void {
     this.quizService.getCategories()
@@ -26,14 +27,21 @@ export class QuizFormComponent implements OnInit {
 
 
 
+
+
   onSubmit() {
-    const categoryId = this.selectedCategoryId; // Get the selected category ID from the dropdown
-    const difficulty = this.selectedDifficulty; // Get the selected difficulty from the dropdown
+    const categoryId = this.selectedCategoryId;
+    const difficulty = this.selectedDifficulty;
 
     this.quizService.getQuiz(categoryId, difficulty)
       .subscribe(quizQuestions => {
         console.log('Quiz Questions:', quizQuestions);
-        // Handle the retrieved quiz questions
+
+
+        this.router.navigate(['/quiz'], {
+          state: { quizQuestions, currentIndex: 0 }
+        });
       });
   }
+
 }
