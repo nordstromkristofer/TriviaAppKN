@@ -1,0 +1,11 @@
+.resultcard {
+  margin: 0% auto;
+  width: 20%;
+  margin-top: 5%;
+  background-color: #f5f5dc8f;
+}
+
+.cardtitle,
+table {
+  text-align: center;
+}
