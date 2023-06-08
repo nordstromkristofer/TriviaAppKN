@@ -42,7 +42,7 @@ export class QuizCardComponent implements OnInit {
       console.log('Shuffled Answers:', this.shuffledAnswers);
 
       // Start the countdown timer
-      this.startTimer();
+      // this.startTimer();
     });
   }
 
@@ -51,16 +51,16 @@ export class QuizCardComponent implements OnInit {
     this.stopTimer();
   }
 
-  startTimer(): void {
-    this.timer = setInterval(() => {
-      this.remainingTime--;
-      if (this.remainingTime === 0) {
-        // Time has run out, automatically select an incorrect answer and proceed to the next question
-        this.selectedAnswer = this.shuffledAnswers.find(answer => answer !== this.currentQuestion?.correct_answer);
-        this.nextQuestion();
-      }
-    }, 1000);
-  }
+  /*   startTimer(): void {
+      this.timer = setInterval(() => {
+        this.remainingTime--;
+        if (this.remainingTime === 0) {
+          // Time has run out, automatically select an incorrect answer and proceed to the next question
+          this.selectedAnswer = this.shuffledAnswers.find(answer => answer !== this.currentQuestion?.correct_answer);
+          this.nextQuestion();
+        }
+      }, 1000);
+    } */
 
   stopTimer(): void {
     clearInterval(this.timer);
@@ -113,13 +113,13 @@ export class QuizCardComponent implements OnInit {
       this.selectedAnswer = undefined;
       this.remainingTime = 31; // Reset the remaining time for the next question
       // Start the countdown timer for the next question
-      this.startTimer();
+      // this.startTimer();
     } else {
       // End of quiz
       console.log('End of quiz');
-      // Store user answer for the last question
+      // Store answers
       this.userAnswers[this.currentIndex] = this.selectedAnswer;
-      // Count correct and incorrect answers
+      // Counting answers
       const correctAnswersCount = this.userAnswers.filter(
         (answer, index) => answer === this.quizQuestions[index].correct_answer
       ).length;
