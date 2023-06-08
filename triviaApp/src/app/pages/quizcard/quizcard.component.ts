@@ -15,6 +15,7 @@ export class QuizCardComponent implements OnInit {
   currentIndex: number = 0;
   currentQuestion: QuizQuestion | undefined;
   selectedAnswer: string | undefined;
+  userAnswers: (string | undefined)[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -34,9 +35,6 @@ export class QuizCardComponent implements OnInit {
       console.log('Quiz Questions:', this.quizQuestions);
       console.log('Current Index:', this.currentIndex);
       console.log('Current Question:', this.currentQuestion);
-
-
-
     });
   }
 
@@ -44,6 +42,7 @@ export class QuizCardComponent implements OnInit {
     if (answer) {
       this.selectedAnswer = answer;
       console.log('Selected answer:', answer);
+      // Additional logic if needed
     }
   }
 
@@ -57,14 +56,19 @@ export class QuizCardComponent implements OnInit {
 
   nextQuestion(): void {
     if (this.currentIndex < this.quizQuestions.length - 1) {
+      // Store user answer
+      this.userAnswers[this.currentIndex] = this.selectedAnswer;
+      // Go to the next question
       this.currentIndex++;
       this.currentQuestion = this.quizQuestions[this.currentIndex];
       this.selectedAnswer = undefined;
     } else {
-
-      console.log('End');
-
-      this.router.navigate(['/result']);
+      // End of quiz
+      console.log('End of quiz');
+      // Store user answer for the last question
+      this.userAnswers[this.currentIndex] = this.selectedAnswer;
+      // Navigate to the result page
+      this.router.navigate(['/result'], { state: { userAnswers: this.userAnswers } });
     }
   }
 }
