@@ -10,7 +10,9 @@
     </ul>
   </div>
 
-
+  <div class="timer">
+    <p>Remaining Time: {{ remainingTime | number: '2.0-0' }} seconds</p>
+  </div>
 
   <div class="submitbutton">
     <button style="background-color: #d2d2d27a" type="submit" (click)="nextQuestion()">Next</button>
