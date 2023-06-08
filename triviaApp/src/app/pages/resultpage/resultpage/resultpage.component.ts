@@ -2,21 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-result-page',
+  selector: 'app-result',
   templateUrl: './resultpage.component.html',
   styleUrls: ['./resultpage.component.css']
 })
 export class ResultPageComponent implements OnInit {
-  userAnswers: string[] = [];
+  correctAnswersCount: number = 0;
+  incorrectAnswersCount: number = 0;
 
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.route.queryParamMap.subscribe((queryParams) => {
-      const userAnswersParam = queryParams.get('userAnswers');
-      this.userAnswers = userAnswersParam ? userAnswersParam.split(',') : [];
-      console.log('User Answers:', this.userAnswers);
-      // Logic for displaying the quiz results
+    this.route.paramMap.subscribe((params) => {
+      const state = window.history.state;
+      this.correctAnswersCount = state?.correctAnswersCount || 0;
+      this.incorrectAnswersCount = state?.incorrectAnswersCount || 0;
     });
   }
 }
