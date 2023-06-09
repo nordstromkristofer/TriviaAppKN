@@ -88,7 +88,10 @@ button {
     margin-top: unset;
     width: unset;
     height: 98.5%;
+  }
 
+  .question {
+    font-size: 18px;
   }
 
   .answers {
