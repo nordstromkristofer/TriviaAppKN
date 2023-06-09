@@ -1,0 +1,23 @@
+<mat-card class="quizform">
+  <mat-card-title class="cardtitle">My Form</mat-card-title>
+  <mat-card-content style="padding: 2%;">
+    <form (ngSubmit)="onSubmit()">
+      <div>
+        <label>Category</label>
+        <select [(ngModel)]="selectedCategoryId" name="selectedCategory">
+          <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+        </select>
+      </div>
+      <div>
+        <label>Difficulty</label>
+        <select [(ngModel)]="selectedDifficulty" name="selectedDifficulty">
+          <option value="">Any difficulty</option>
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+      </div>
+      <button type="submit" class="submitbutton">Submit</button>
+    </form>
+  </mat-card-content>
+</mat-card>
