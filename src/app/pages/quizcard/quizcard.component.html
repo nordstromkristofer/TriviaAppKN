@@ -4,7 +4,7 @@
   <div>
     <ul class="answers">
       <li *ngFor="let answer of shuffledAnswers" [class.active]="selectedAnswer === answer"
-        (click)="toggleAnswer(answer)" class="answer">
+        (click)="toggleAnswer(answer)" class="answer" [innerHTML]="answer">
         {{ answer }}
       </li>
     </ul>
