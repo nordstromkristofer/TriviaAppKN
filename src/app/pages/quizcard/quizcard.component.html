@@ -1,0 +1,20 @@
+<div class="quiz-container">
+  <h1 class="question" [innerHTML]="currentQuestion?.question"></h1>
+
+  <div>
+    <ul class="answers">
+      <li *ngFor="let answer of shuffledAnswers" [class.active]="selectedAnswer === answer"
+        (click)="toggleAnswer(answer)" class="answer" [innerHTML]="answer">
+        {{ answer }}
+      </li>
+    </ul>
+  </div>
+
+  <div class="timer">
+    <p>Remaining Time: {{ remainingTime | number: '2.0-0' }} seconds</p>
+  </div>
+
+  <div class="submitbutton">
+    <button style="background-color: #d2d2d27a" type="submit" (click)="nextQuestion()">Next</button>
+  </div>
+</div>
