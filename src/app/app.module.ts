@@ -18,7 +18,8 @@ import { ResultPageComponent } from './pages/resultpage/resultpage/resultpage.co
     AppComponent,
     QuizFormComponent,
     HomeComponent,
-    QuizCardComponent
+    QuizCardComponent,
+    ResultPageComponent
   ],
   imports: [
     FormsModule,
