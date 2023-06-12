@@ -1,5 +1,23 @@
-<h1>Quiz Result</h1>
-<p>Correct Answers: {{ correctAnswersCount }}</p>
-<p>Incorrect Answers: {{ incorrectAnswersCount }}</p>
+<!-- <mat-card>
+  <mat-card-header>
+    <mat-card-title>Quiz Result</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>Correct Answers: {{ correctAnswersCount }}</p>
+    <p>Incorrect Answers: {{ incorrectAnswersCount }}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <a mat-button href="http://localhost:4200">Let's go again!</a>
+  </mat-card-actions>
+</mat-card> -->
 
-<a href="http://localhost:4200">bwuack</a>
+<mat-card class="quizresult">
+  <mat-card-content style="padding: 2%;">
+    <label class="resultlabel">
+      <p>Correct Answers: {{ correctAnswersCount }}</p>
+      <p>Incorrect Answers: {{ incorrectAnswersCount }}</p>
+      <a href="http://localhost:4200" class="mat-raised-button">Let's go again!</a>
+    </label>
+
+  </mat-card-content>
+</mat-card>

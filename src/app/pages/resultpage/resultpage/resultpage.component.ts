@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-result',
+  selector: 'app-resultpage',
   templateUrl: './resultpage.component.html',
   styleUrls: ['./resultpage.component.css']
 })
